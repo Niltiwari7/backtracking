@@ -190,4 +190,40 @@ public:
     }
 };
 ```
+#### find unique permutation
+```
+//{ Driver Code Starts
+#include<bits/stdc++.h>
+using namespace std;
+
+// } Driver Code Ends
+class Solution
+{
+	public:
+	    void solve(string s,set<string>&ans,int l,int r)
+	    {
+	        if(l==r){
+	            ans.insert(s);
+	            return;
+	        }
+	        for(int i=l;i<=r;i++)
+	        {
+	            swap(s[l],s[i]);
+	            solve(s,ans,l+1,r);
+	            swap(s[l],s[i]);
+	        }
+	    }
+	vector<string> find_permutation(string S)
+{
+    set<string> ans;
+    solve(S, ans, 0, S.size() - 1);
+    
+    vector<string> res(ans.begin(), ans.end()); // Copy elements from set to vector
+    sort(res.begin(), res.end()); // Sort the vector
+    
+    return res;
+}
+};
+
+```
 
